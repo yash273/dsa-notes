@@ -1,0 +1,1 @@
+Structured notes on Data Structures & Algorithms problems, focusing on patterns, trade-offs, and interview-ready explanations.
