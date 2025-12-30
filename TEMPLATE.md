@@ -71,8 +71,10 @@ Explain where and why it fails (TLE, extra space, unnecessary work).
 ```js
 // Write clean, readable code
 // Avoid clever hacks
+```
 
 #### c++
 ```cpp
 // Write clean, readable code
 // Prefer clarity over micro-optimizations
+```
