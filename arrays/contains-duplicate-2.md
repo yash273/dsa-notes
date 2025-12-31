@@ -1,17 +1,18 @@
 # 📌 Problem Overview
 
-**Problem Name:**  Contains Duplicate
-**LeetCode #:**  217
+**Problem Name:**  Contains Duplicate 2
+**LeetCode #:**  219
 **Difficulty:** Easy 
 **Category:** Array  
-**Core Pattern:** Hashing(set)
+**Core Pattern:** Hashing(map)
 
 ---
 
 ## 🧠 Problem Restatement (In My Words)
 
-given int array, need to find any value appears more than one,
-if at least one occures more than one, return true, else false,
+given int array and int k, if two value arr[i] and arr[j] at diff index are same and 
+abs(i - j) <= k; (means the difference of position should not be greater than k) return true.
+else return false.
 ---
 
 ## 🔍 Constraints & Observations
@@ -19,21 +20,21 @@ if at least one occures more than one, return true, else false,
 - Input size range:0 <= 10^5
 - Value range: any
 - Order does not matter
-- we only care about the dupllicates not the count 
+- we care about duplicate value not count 
 
-- if all elements are unique, the number of unique elements equals to the lenght of array.
-
+- if all elements are unique, the value of k must be 0,
+- 
 ---
 
 ## ❌ Brute Force / Naive Approach
 
 **Idea:**  
-Compare every elements of arr with every other element.
+we can make nested loops and check with condition, if satisfy than return true else false.
 
 **Algorithm:**
-1. loop through each element.
-2. for each element, compare it with all following elements
-3. if a match is found, return true
+1. outer loop i, inner loop j > i.
+2. check for arr[i] === arr[j] and abs(i - j ) <= k
+3. if a match is found, return true else false
 
 **Complexity:**
 - Time Complexity: O(n2)
@@ -47,6 +48,8 @@ when larger input the nested loops may cause TLE
 ## 💡 Key Insight (Breakthrough)
 
 > if we can track elements we have already seen unsing a hash-based structure, we can detect duplicates 
+
+(Keep this to 1–3 precise sentences.)
 
 ---
 
@@ -71,6 +74,25 @@ when larger input the nested loops may cause TLE
 
 #### c++
 ```cpp
+
+//brute force:
+
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        int n = nums.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] == nums[j] && abs(i - j) <= k) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+// optimized solution 
 class Solution {
     bool containsDuplicates(vector<int>& nums) {
         unordered_set<int> s;
