@@ -57,10 +57,10 @@ when larger input the nested loops may cause TLE
 
 ### 🔧 Algorithm (Step-by-Step)
 
-1. create an emplty set
+1. create an emplty map
 2. iterate through the array
-3. if current element is already in set, return true
-4. otherwise, add the element to set
+3. if current element is already in map and satisfy condition, return true
+4. otherwise, add the element to map
 5. if loop completes return false
 ---
 
@@ -94,13 +94,16 @@ public:
 
 // optimized solution 
 class Solution {
-    bool containsDuplicates(vector<int>& nums) {
-        unordered_set<int> s;
-        for (int n : nums) {
-            if (s.count(n)) return true;
-            s.insert(n);
-        }
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        unordered_map<int,int> m;
+            for(int i = 0; i < nums.size(); i++) {
+                if (m.count(nums[i]) && abs(i - m[nums[i]]) <= k) {
+                    return true;
+                }
+                m[nums[i]] = i;
+            }
         return false;
     }
-}
+};
 ```
